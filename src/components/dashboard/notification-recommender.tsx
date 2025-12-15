@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState, useFormStatus } from 'react-dom';
 import { useEffect } from 'react';
 import {
   Card,
@@ -42,7 +42,7 @@ function SubmitButton() {
 }
 
 export function NotificationRecommender() {
-  const [state, formAction] = useFormState(getRecommendations, initialState);
+  const [state, formAction] = useActionState(getRecommendations, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
