@@ -117,3 +117,12 @@ export const mockPayments = [
   { transactionId: 'PAY-003', studentId: 'STU-003', amount: 'GH₵75,000', date: '2024-05-03', status: 'Pending', purpose: 'School Fees' },
   { transactionId: 'PAY-004', studentId: 'STU-004', amount: 'GH₵10,000', date: '2024-05-04', status: 'Failed', purpose: 'Exam Fee' },
 ];
+
+export const mockSentNotifications = [
+  { id: 'NOTIF-001', date: '2024-05-28', targetGroup: 'Parents', subject: 'Mid-term Break Announcement', status: 'Sent' },
+  { id: 'NOTIF-002', date: '2024-05-27', targetGroup: 'Teachers', subject: 'Staff Professional Development', status: 'Sent' },
+  { id: 'NOTIF-003', date: '2024-05-25', targetGroup: 'Students', subject: 'Upcoming Sports Gala', status: 'Sent' },
+  { id: 'NOTIF-004', date: '2024-05-22', targetGroup: 'All', subject: 'Important Security Update', status: 'Sent' },
+  { id: 'NOTIF-005', date: '2024-05-20', targetGroup: 'Parents', subject: 'School Fees Reminder', status: 'Failed' },
+  { id: 'NOTIF-006', date: '2024-05-19', targetGroup: 'Students', subject: 'Career Day', status: 'Draft' },
+];
