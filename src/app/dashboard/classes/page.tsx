@@ -1,6 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { mockClasses } from '@/lib/data';
 
 export default function ClassesPage() {
   return (
@@ -17,7 +20,28 @@ export default function ClassesPage() {
           <CardDescription>Manage classes, sub-classes, and their assignments.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">The class management interface will be displayed here.</p>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Class Name</TableHead>
+                <TableHead>Class Teacher</TableHead>
+                <TableHead>No. of Students</TableHead>
+                <TableHead>Sub-classes</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {mockClasses.map((klass) => (
+                <TableRow key={klass.name}>
+                  <TableCell className="font-medium">{klass.name}</TableCell>
+                  <TableCell>{klass.teacher}</TableCell>
+                  <TableCell>{klass.students}</TableCell>
+                  <TableCell className="flex gap-1">
+                    {klass.subClasses.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
     </div>

@@ -1,6 +1,15 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { mockStudents } from '@/lib/data';
+
+const statusVariantMap: { [key: string]: "default" | "secondary" | "destructive" } = {
+  Active: 'default',
+  Suspended: 'destructive',
+  Withdrawn: 'secondary',
+};
 
 export default function StudentsPage() {
   return (
@@ -17,7 +26,32 @@ export default function StudentsPage() {
           <CardDescription>View, edit, and manage student profiles and records.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">The student management interface will be displayed here.</p>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Student ID</TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead>Class</TableHead>
+                <TableHead>Parent Name</TableHead>
+                <TableHead>Admission Date</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {mockStudents.map((student) => (
+                <TableRow key={student.id}>
+                  <TableCell>{student.id}</TableCell>
+                  <TableCell className="font-medium">{student.name}</TableCell>
+                  <TableCell>{student.class}</TableCell>
+                  <TableCell>{student.parentName}</TableCell>
+                  <TableCell>{student.admissionDate}</TableCell>
+                  <TableCell>
+                    <Badge variant={statusVariantMap[student.status] || 'default'}>{student.status}</Badge>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
     </div>

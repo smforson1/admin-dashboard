@@ -88,3 +88,32 @@ export const mockNotificationHistory: NotificationRecommendationsInput['pastNoti
       engagementMetrics: { views: 90, clicks: 75 },
     },
   ];
+
+export const mockStudents = [
+  { id: 'STU-001', name: 'John Doe', class: 'JSS 1', parentName: 'Jane Doe', admissionDate: '2023-09-01', status: 'Active' },
+  { id: 'STU-002', name: 'Mary Smith', class: 'SSS 2', parentName: 'Peter Smith', admissionDate: '2022-09-01', status: 'Active' },
+  { id: 'STU-003', name: 'David Johnson', class: 'JSS 3', parentName: 'Anne Johnson', admissionDate: '2021-09-01', status: 'Suspended' },
+  { id: 'STU-004', name: 'Emily Williams', class: 'SSS 1', parentName: 'Chris Williams', admissionDate: '2023-09-01', status: 'Active' },
+  { id: 'STU-005', name: 'Michael Brown', class: 'JSS 2', parentName: 'Sarah Brown', admissionDate: '2022-09-01', status: 'Withdrawn' },
+];
+
+export const mockTeachers = [
+  { id: 'TCH-001', name: 'Mr. Adewale', subject: 'Mathematics', contact: '08012345678', employmentDate: '2020-08-15', status: 'Active' },
+  { id: 'TCH-002', name: 'Mrs. Okoro', subject: 'English', contact: '08023456789', employmentDate: '2018-09-20', status: 'Active' },
+  { id: 'TCH-003', name: 'Dr. Bello', subject: 'Physics', contact: '08034567890', employmentDate: '2022-01-10', status: 'On Leave' },
+  { id: 'TCH-004', name: 'Ms. Chukwu', subject: 'Chemistry', contact: '08045678901', employmentDate: '2021-05-01', status: 'Active' },
+];
+
+export const mockClasses = [
+  { name: 'JSS 1', teacher: 'Mr. Adewale', students: 45, subClasses: ['A', 'B', 'C'] },
+  { name: 'JSS 2', teacher: 'Mrs. Okoro', students: 42, subClasses: ['A', 'B'] },
+  { name: 'SSS 1', teacher: 'Dr. Bello', students: 38, subClasses: ['Science', 'Arts', 'Commercial'] },
+  { name: 'SSS 2', teacher: 'Ms. Chukwu', students: 35, subClasses: ['Science', 'Arts', 'Commercial'] },
+];
+
+export const mockPayments = [
+  { transactionId: 'PAY-001', studentId: 'STU-001', amount: '₦75,000', date: '2024-05-01', status: 'Paid', purpose: 'School Fees' },
+  { transactionId: 'PAY-002', studentId: 'STU-002', amount: '₦5,000', date: '2024-05-02', status: 'Paid', purpose: 'Voucher' },
+  { transactionId: 'PAY-003', studentId: 'STU-003', amount: '₦75,000', date: '2024-05-03', status: 'Pending', purpose: 'School Fees' },
+  { transactionId: 'PAY-004', studentId: 'STU-004', amount: '₦10,000', date: '2024-05-04', status: 'Failed', purpose: 'Exam Fee' },
+];
