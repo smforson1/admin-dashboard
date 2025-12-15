@@ -1,11 +1,8 @@
 import type { ReactNode } from 'react';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 import { SidebarNav } from '@/components/dashboard/sidebar-nav';
-import dynamic from 'next/dynamic';
+import DynamicHeader from '@/components/dashboard/dynamic-header';
 
-const DynamicHeader = dynamic(() => import('@/components/dashboard/dynamic-header'), {
-  ssr: false,
-});
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
