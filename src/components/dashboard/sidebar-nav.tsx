@@ -12,6 +12,7 @@ import {
   CreditCard,
   Bell,
   Gem,
+  CalendarDays,
 } from 'lucide-react';
 import {
   Sidebar,
@@ -32,6 +33,7 @@ const navItems = [
   { href: '/dashboard/mocks', icon: ClipboardCheck, label: 'Mock Exams' },
   { href: '/dashboard/payments', icon: CreditCard, label: 'Payments' },
   { href: '/dashboard/notifications', icon: Bell, label: 'Notifications' },
+  { href: '/dashboard/timetable', icon: CalendarDays, label: 'Timetable' },
 ];
 
 export function SidebarNav() {
