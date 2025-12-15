@@ -67,7 +67,6 @@ export function UserLoginsChart({ data, chartConfig }: UserLoginsChartProps) {
                 nameKey="name"
                 innerRadius={60}
                 strokeWidth={5}
-                labelKey='name'
             >
                  {data.map((entry) => (
                   <Cell
