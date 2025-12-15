@@ -1,4 +1,4 @@
-import { stats, weeklyActivityData, userLoginsData } from '@/lib/data';
+import { stats, weeklyActivityData, userLoginsData, chartConfig } from '@/lib/data';
 import { StatCard } from '@/components/dashboard/stat-card';
 import { WeeklyActivityChart, UserLoginsChart } from '@/components/dashboard/charts';
 import { NotificationRecommender } from '@/components/dashboard/notification-recommender';
@@ -40,7 +40,7 @@ export default function DashboardPage() {
             <CardDescription>Distribution of logins by user type.</CardDescription>
           </CardHeader>
           <CardContent>
-            <UserLoginsChart data={userLoginsData} />
+            <UserLoginsChart data={userLoginsData} chartConfig={chartConfig} />
           </CardContent>
         </Card>
       </div>

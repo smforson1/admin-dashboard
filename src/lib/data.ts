@@ -1,5 +1,6 @@
 import type { NotificationRecommendationsInput } from "@/ai/flows/intelligent-notification-recommendations";
 import type { Student, Teacher, Class, Payment, SentNotification } from './types';
+import { ChartConfig } from "@/components/ui/chart";
 
 
 export const stats = [
@@ -46,23 +47,37 @@ export const weeklyActivityData = [
 ];
 
 export const userLoginsData = [
-    { name: 'Students', value: 400, fill: "var(--color-chart-1)" },
-    { name: 'Teachers', value: 150, fill: "var(--color-chart-2)" },
-    { name: 'Parents', value: 250, fill: "var(--color-chart-3)" },
-    { name: 'Admins', value: 50, fill: "var(--color-chart-5)" },
+    { name: 'Students', value: 400, fill: "var(--color-students)" },
+    { name: 'Teachers', value: 150, fill: "var(--color-teachers)" },
+    { name: 'Parents', value: 250, fill: "var(--color-parents)" },
+    { name: 'Admins', value: 50, fill: "var(--color-admins)" },
 ];
 
 
 export const chartConfig = {
     logins: {
       label: 'Logins',
-      color: 'hsl(var(--chart-1))',
     },
     activity: {
       label: 'Activity',
-      color: 'hsl(var(--chart-2))',
     },
-  };
+    students: {
+        label: 'Students',
+        color: 'hsl(var(--chart-1))',
+    },
+    teachers: {
+        label: 'Teachers',
+        color: 'hsl(var(--chart-2))',
+    },
+    parents: {
+        label: 'Parents',
+        color: 'hsl(var(--chart-3))',
+    },
+    admins: {
+        label: 'Admins',
+        color: 'hsl(var(--chart-5))',
+    }
+  } satisfies ChartConfig;
 
 export const mockNotificationHistory: NotificationRecommendationsInput['pastNotifications'] = [
     {

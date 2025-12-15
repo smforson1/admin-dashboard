@@ -4,8 +4,10 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, Line
 import {
     ChartContainer,
     ChartTooltipContent,
+    ChartLegend,
+    ChartLegendContent,
+    ChartConfig,
   } from "@/components/ui/chart"
-import { chartConfig } from '@/lib/data';
 
 type WeeklyActivityChartProps = {
   data: any[];
@@ -47,16 +49,17 @@ export function WeeklyActivityChart({ data }: WeeklyActivityChartProps) {
 
 type UserLoginsChartProps = {
     data: any[];
+    chartConfig: ChartConfig;
   };
   
-export function UserLoginsChart({ data }: UserLoginsChartProps) {
+export function UserLoginsChart({ data, chartConfig }: UserLoginsChartProps) {
     return (
-        <ChartContainer config={{}} className="min-h-[200px] w-full">
+        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
         <ResponsiveContainer width="100%" height={350}>
             <PieChart>
             <Tooltip
                 cursor={false}
-                content={<ChartTooltipContent hideLabel />}
+                content={<ChartTooltipContent hideLabel nameKey="name" />}
             />
             <Pie
                 data={data}
@@ -64,12 +67,17 @@ export function UserLoginsChart({ data }: UserLoginsChartProps) {
                 nameKey="name"
                 innerRadius={60}
                 strokeWidth={5}
+                labelKey='name'
             >
-                {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.fill} />
+                 {data.map((entry) => (
+                  <Cell
+                    key={entry.name}
+                    fill={entry.fill}
+                    className="focus:outline-none"
+                  />
                 ))}
             </Pie>
-            <Legend />
+            <ChartLegend content={<ChartLegendContent nameKey="name" />} />
             </PieChart>
         </ResponsiveContainer>
       </ChartContainer>
