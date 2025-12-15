@@ -1,3 +1,5 @@
+'use client';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle } from 'lucide-react';
@@ -11,6 +13,12 @@ const statusVariantMap: { [key: string]: "default" | "secondary" | "destructive"
 };
 
 export default function TeachersPage() {
+  const router = useRouter();
+
+  const handleRowClick = (teacherId: string) => {
+    router.push(`/dashboard/teachers/${teacherId}`);
+  };
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -38,7 +46,7 @@ export default function TeachersPage() {
             </TableHeader>
             <TableBody>
               {mockTeachers.map((teacher) => (
-                <TableRow key={teacher.id}>
+                <TableRow key={teacher.id} onClick={() => handleRowClick(teacher.id)} className="cursor-pointer">
                   <TableCell>{teacher.id}</TableCell>
                   <TableCell className="font-medium">{teacher.name}</TableCell>
                   <TableCell>{teacher.subject}</TableCell>
