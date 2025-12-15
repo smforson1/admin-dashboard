@@ -27,8 +27,8 @@ export const stats = [
   },
   {
     title: 'Paystack Balance',
-    value: '₦1,250,000',
-    change: '+₦50,000',
+    value: 'GH₵1,250,000',
+    change: '+GH₵50,000',
     icon: 'Wallet',
   },
 ];
@@ -112,8 +112,8 @@ export const mockClasses = [
 ];
 
 export const mockPayments = [
-  { transactionId: 'PAY-001', studentId: 'STU-001', amount: '₦75,000', date: '2024-05-01', status: 'Paid', purpose: 'School Fees' },
-  { transactionId: 'PAY-002', studentId: 'STU-002', amount: '₦5,000', date: '2024-05-02', status: 'Paid', purpose: 'Voucher' },
-  { transactionId: 'PAY-003', studentId: 'STU-003', amount: '₦75,000', date: '2024-05-03', status: 'Pending', purpose: 'School Fees' },
-  { transactionId: 'PAY-004', studentId: 'STU-004', amount: '₦10,000', date: '2024-05-04', status: 'Failed', purpose: 'Exam Fee' },
+  { transactionId: 'PAY-001', studentId: 'STU-001', amount: 'GH₵75,000', date: '2024-05-01', status: 'Paid', purpose: 'School Fees' },
+  { transactionId: 'PAY-002', studentId: 'STU-002', amount: 'GH₵5,000', date: '2024-05-02', status: 'Paid', purpose: 'Voucher' },
+  { transactionId: 'PAY-003', studentId: 'STU-003', amount: 'GH₵75,000', date: '2024-05-03', status: 'Pending', purpose: 'School Fees' },
+  { transactionId: 'PAY-004', studentId: 'STU-004', amount: 'GH₵10,000', date: '2024-05-04', status: 'Failed', purpose: 'Exam Fee' },
 ];
