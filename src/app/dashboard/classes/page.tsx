@@ -1,9 +1,9 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { mockClasses } from '@/lib/data';
 import {
   Dialog,
   DialogContent,
@@ -15,8 +15,33 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Class } from '@/lib/types';
+import { useEffect, useState } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ClassesPage() {
+  const [classes, setClasses] = useState<Class[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchClasses = async () => {
+      try {
+        const res = await fetch('/api/mock?entity=classes');
+        if (!res.ok) {
+          throw new Error('Failed to fetch classes');
+        }
+        const data = await res.json();
+        setClasses(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchClasses();
+  }, []);
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -66,6 +91,7 @@ export default function ClassesPage() {
           <CardDescription>Manage classes, sub-classes, and their assignments.</CardDescription>
         </CardHeader>
         <CardContent>
+          {error && <p className="text-destructive">{error}</p>}
           <Table>
             <TableHeader>
               <TableRow>
@@ -76,16 +102,27 @@ export default function ClassesPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockClasses.map((klass) => (
-                <TableRow key={klass.name}>
-                  <TableCell className="font-medium">{klass.name}</TableCell>
-                  <TableCell>{klass.teacher}</TableCell>
-                  <TableCell>{klass.students}</TableCell>
-                  <TableCell className="flex gap-1">
-                    {klass.subClasses.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
-                  </TableCell>
-                </TableRow>
-              ))}
+              {loading ? (
+                Array.from({ length: 4 }).map((_, index) => (
+                    <TableRow key={index}>
+                      <TableCell><Skeleton className="h-4 w-24" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-32" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-16" /></TableCell>
+                      <TableCell><div className="flex gap-1"><Skeleton className="h-6 w-12 rounded-full" /><Skeleton className="h-6 w-12 rounded-full" /></div></TableCell>
+                    </TableRow>
+                  ))
+              ) : (
+                classes.map((klass) => (
+                  <TableRow key={klass.name}>
+                    <TableCell className="font-medium">{klass.name}</TableCell>
+                    <TableCell>{klass.teacher}</TableCell>
+                    <TableCell>{klass.students}</TableCell>
+                    <TableCell className="flex gap-1">
+                      {klass.subClasses.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>

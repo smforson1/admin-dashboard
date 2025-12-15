@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { PlusCircle } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { mockTeachers } from '@/lib/data';
 import {
   Dialog,
   DialogContent,
@@ -17,6 +16,9 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Teacher } from '@/lib/types';
+import { useEffect, useState } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const statusVariantMap: { [key: string]: 'default' | 'secondary' | 'destructive' } = {
   Active: 'default',
@@ -25,6 +27,27 @@ const statusVariantMap: { [key: string]: 'default' | 'secondary' | 'destructive'
 
 export default function TeachersPage() {
   const router = useRouter();
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const res = await fetch('/api/mock?entity=teachers');
+        if (!res.ok) {
+          throw new Error('Failed to fetch teachers');
+        }
+        const data = await res.json();
+        setTeachers(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTeachers();
+  }, []);
 
   const handleRowClick = (teacherId: string) => {
     router.push(`/dashboard/teachers/${teacherId}`);
@@ -85,6 +108,7 @@ export default function TeachersPage() {
           <CardDescription>Manage teacher profiles, class assignments, and permissions.</CardDescription>
         </CardHeader>
         <CardContent>
+          {error && <p className="text-destructive">{error}</p>}
           <Table>
             <TableHeader>
               <TableRow>
@@ -97,18 +121,31 @@ export default function TeachersPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockTeachers.map((teacher) => (
-                <TableRow key={teacher.id} onClick={() => handleRowClick(teacher.id)} className="cursor-pointer">
-                  <TableCell>{teacher.id}</TableCell>
-                  <TableCell className="font-medium">{teacher.name}</TableCell>
-                  <TableCell>{teacher.subject}</TableCell>
-                  <TableCell>{teacher.contact}</TableCell>
-                  <TableCell>{teacher.employmentDate}</TableCell>
-                  <TableCell>
-                    <Badge variant={statusVariantMap[teacher.status] || 'default'}>{teacher.status}</Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {loading ? (
+                 Array.from({ length: 4 }).map((_, index) => (
+                    <TableRow key={index}>
+                      <TableCell><Skeleton className="h-4 w-20" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-32" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-24" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-28" /></TableCell>
+                      <TableCell><Skeleton className="h-4 w-24" /></TableCell>
+                      <TableCell><Skeleton className="h-6 w-20 rounded-full" /></TableCell>
+                    </TableRow>
+                  ))
+              ) : (
+                teachers.map((teacher) => (
+                  <TableRow key={teacher.id} onClick={() => handleRowClick(teacher.id)} className="cursor-pointer">
+                    <TableCell>{teacher.id}</TableCell>
+                    <TableCell className="font-medium">{teacher.name}</TableCell>
+                    <TableCell>{teacher.subject}</TableCell>
+                    <TableCell>{teacher.contact}</TableCell>
+                    <TableCell>{teacher.employmentDate}</TableCell>
+                    <TableCell>
+                      <Badge variant={statusVariantMap[teacher.status] || 'default'}>{teacher.status}</Badge>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>

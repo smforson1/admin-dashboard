@@ -1,4 +1,6 @@
 import type { NotificationRecommendationsInput } from "@/ai/flows/intelligent-notification-recommendations";
+import type { Student, Teacher, Class, Payment, SentNotification } from './types';
+
 
 export const stats = [
   {
@@ -89,7 +91,7 @@ export const mockNotificationHistory: NotificationRecommendationsInput['pastNoti
     },
   ];
 
-  export const mockStudents = [
+  export const mockStudents: Student[] = [
     { id: 'STU-001', name: 'John Doe', class: 'JSS 1', parentName: 'Jane Doe', admissionDate: '2023-09-01', status: 'Active', imageUrl: 'https://picsum.photos/seed/1/200/200', dob: '2010-05-12', gender: 'Male', address: '123 School Lane, Accra', parentContact: '024 123 4567', parentEmail: 'jane.doe@example.com' },
     { id: 'STU-002', name: 'Mary Smith', class: 'SSS 2', parentName: 'Peter Smith', admissionDate: '2022-09-01', status: 'Active', imageUrl: 'https://picsum.photos/seed/2/200/200', dob: '2007-08-22', gender: 'Female', address: '456 Education Ave, Kumasi', parentContact: '020 987 6543', parentEmail: 'peter.smith@example.com' },
     { id: 'STU-003', name: 'David Johnson', class: 'JSS 3', parentName: 'Anne Johnson', admissionDate: '2021-09-01', status: 'Suspended', imageUrl: 'https://picsum.photos/seed/3/200/200', dob: '2008-11-30', gender: 'Male', address: '789 Knowledge Blvd, Accra', parentContact: '055 555 1234', parentEmail: 'anne.j@example.com' },
@@ -97,28 +99,28 @@ export const mockNotificationHistory: NotificationRecommendationsInput['pastNoti
     { id: 'STU-005', name: 'Michael Brown', class: 'JSS 2', parentName: 'Sarah Brown', admissionDate: '2022-09-01', status: 'Withdrawn', imageUrl: 'https://picsum.photos/seed/5/200/200', dob: '2009-07-07', gender: 'Male', address: '222 Wisdom Street, Takoradi', parentContact: '026 333 4444', parentEmail: 'sarah.b@example.com' },
   ];
   
-  export const mockTeachers = [
+  export const mockTeachers: Teacher[] = [
     { id: 'TCH-001', name: 'Mr. Adewale', subject: 'Mathematics', contact: '08012345678', employmentDate: '2020-08-15', status: 'Active', imageUrl: 'https://picsum.photos/seed/101/200/200', email: 'mr.adewale@schoolwise.com', address: '1 Teacher\'s Quarters, Accra', qualifications: 'B.Sc. Mathematics, M.Ed.' },
     { id: 'TCH-002', name: 'Mrs. Okoro', subject: 'English', contact: '08023456789', employmentDate: '2018-09-20', status: 'Active', imageUrl: 'https://picsum.photos/seed/102/200/200', email: 'mrs.okoro@schoolwise.com', address: '2 Staff Village, Kumasi', qualifications: 'B.A. English, PGDE' },
     { id: 'TCH-003', name: 'Dr. Bello', subject: 'Physics', contact: '08034567890', employmentDate: '2022-01-10', status: 'On Leave', imageUrl: 'https://picsum.photos/seed/103/200/200', email: 'dr.bello@schoolwise.com', address: '3 Faculty Lane, Cape Coast', qualifications: 'Ph.D. Physics' },
     { id: 'TCH-004', name: 'Ms. Chukwu', subject: 'Chemistry', contact: '08045678901', employmentDate: '2021-05-01', status: 'Active', imageUrl: 'https://picsum.photos/seed/104/200/200', email: 'ms.chukwu@schoolwise.com', address: '4 Academic Way, Accra', qualifications: 'B.Sc. Chemistry, M.Sc. Inorganic Chemistry' },
   ];
 
-export const mockClasses = [
+export const mockClasses: Class[] = [
   { name: 'JSS 1', teacher: 'Mr. Adewale', students: 45, subClasses: ['A', 'B', 'C'] },
   { name: 'JSS 2', teacher: 'Mrs. Okoro', students: 42, subClasses: ['A', 'B'] },
   { name: 'SSS 1', teacher: 'Dr. Bello', students: 38, subClasses: ['Science', 'Arts', 'Commercial'] },
   { name: 'SSS 2', teacher: 'Ms. Chukwu', students: 35, subClasses: ['Science', 'Arts', 'Commercial'] },
 ];
 
-export const mockPayments = [
+export const mockPayments: Payment[] = [
   { transactionId: 'PAY-001', studentId: 'STU-001', amount: 'GH₵75,000', date: '2024-05-01', status: 'Paid', purpose: 'School Fees' },
   { transactionId: 'PAY-002', studentId: 'STU-002', amount: 'GH₵5,000', date: '2024-05-02', status: 'Paid', purpose: 'Voucher' },
   { transactionId: 'PAY-003', studentId: 'STU-003', amount: 'GH₵75,000', date: '2024-05-03', status: 'Pending', purpose: 'School Fees' },
   { transactionId: 'PAY-004', studentId: 'STU-004', amount: 'GH₵10,000', date: '2024-05-04', status: 'Failed', purpose: 'Exam Fee' },
 ];
 
-export const mockSentNotifications = [
+export const mockSentNotifications: SentNotification[] = [
   { id: 'NOTIF-001', date: '2024-05-28', targetGroup: 'Parents', subject: 'Mid-term Break Announcement', status: 'Sent' },
   { id: 'NOTIF-002', date: '2024-05-27', targetGroup: 'Teachers', subject: 'Staff Professional Development', status: 'Sent' },
   { id: 'NOTIF-003', date: '2024-05-25', targetGroup: 'Students', subject: 'Upcoming Sports Gala', status: 'Sent' },
