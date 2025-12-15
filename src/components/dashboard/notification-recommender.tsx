@@ -1,7 +1,6 @@
 'use client';
 
-import { useActionState, useFormStatus } from 'react-dom';
-import { useEffect } from 'react';
+import { useActionState, useFormStatus, useEffect } from 'react';
 import {
   Card,
   CardContent,
