@@ -59,7 +59,7 @@ export function UserLoginsChart({ data, chartConfig }: UserLoginsChartProps) {
             <PieChart>
             <Tooltip
                 cursor={false}
-                content={<ChartTooltipContent hideLabel nameKey="name" />}
+                content={<ChartTooltipContent hideLabel />}
             />
             <Pie
                 data={data}
