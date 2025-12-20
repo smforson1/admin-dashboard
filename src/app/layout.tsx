@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 export const metadata: Metadata = {
   title: 'SchoolWise Dashboard',
   description: 'Admin Dashboard for a School Management System',
+  icons: {
+    icon: '/icon.png',
+  },
 };
 
 export default function RootLayout({
